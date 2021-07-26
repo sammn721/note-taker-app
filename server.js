@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const uniqid = require('uniqid');
 const express = require('express')
 const app = express()
 const newNote = {
@@ -32,6 +33,7 @@ app.post('/api/notes', function (req, res)  {
     //receive new note to save on request body
     //add note to db.json files
     //return new note
+    //asign id with uniqid
 })
  
 app.listen(3000)
