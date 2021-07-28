@@ -9,11 +9,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('root')
-});
+// app.get('/', (req, res) => {
+//     res.send('root')
+// });
 
 app.get('/notes', (req, res) => {
+    // return notes.html
     res.send('notes')
 });
 
@@ -31,13 +32,13 @@ app.post('/api/notes', (req, res) => {
     res.send('posted');
 });
 
-app.get('*', (req, res) => {
-    res.send('all')
-});
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+);
 
-app.listen(PORT, () => {
-    console.log(`App listening on PORT http://localhost:${PORT}`);
-});
+app.listen(PORT, () =>
+    console.log(`App listening on PORT http://localhost:${PORT}`)
+);
 
 // const newNote = {
 //     "title":"A new note",
