@@ -1,9 +1,14 @@
-const fs = require('fs');
-const util = require('util');
+// const fs = require('fs');
+// const util = require('util');
+const express = require('express');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { 
+    readAndAppend,
+    readFromFile,
+    writeToFile
+} = require('./helpers/fsUtils.js');
 
-const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,32 +19,32 @@ app.use(express.json());
 //     res.send('root')
 // });
 
-const readFromFile = util.promisify(fs.readFile);
-/**
- * @param {string} destination
- * @param {object} content
- * @returns {void}
- */
-const writeToFile = (destination, content) =>
-fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-err ? console.error(err) : console.info(`\nData written to ${destination}`)
-);
-/**
- * @param {object} content
- * @param {string} file
- * @returns {void}
- */
-const readAndAppend = (content, file) => {
-    fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-    } else {
-        const parsedData = JSON.parse(data);
-        parsedData.push(content);
-        writeToFile(file, parsedData);
-    }
-    });
-};
+// const readFromFile = util.promisify(fs.readFile);
+// /**
+//  * @param {string} destination
+//  * @param {object} content
+//  * @returns {void}
+//  */
+// const writeToFile = (destination, content) =>
+// fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+// err ? console.error(err) : console.info(`\nData written to ${destination}`)
+// );
+// /**
+//  * @param {object} content
+//  * @param {string} file
+//  * @returns {void}
+//  */
+// const readAndAppend = (content, file) => {
+//     fs.readFile(file, 'utf8', (err, data) => {
+//     if (err) {
+//         console.error(err);
+//     } else {
+//         const parsedData = JSON.parse(data);
+//         parsedData.push(content);
+//         writeToFile(file, parsedData);
+//     }
+//     });
+// };
 app.get('/notes', (req, res) =>
     // return notes.html
     res.sendFile(path.join(__dirname, 'public/notes.html'))
