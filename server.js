@@ -13,10 +13,10 @@ app.use(express.json());
 //     res.send('root')
 // });
 
-app.get('/notes', (req, res) => {
+app.get('/notes', (req, res) =>
     // return notes.html
-    res.send('notes')
-});
+    res.sendFile(path.join(__dirname, 'public/notes.html'))
+);
 
 app.get('/api/notes', (req, res) => {
     res.send('api notes')
