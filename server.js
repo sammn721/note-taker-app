@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
 const path = require('path');
-const uniqid = require('uniqid');
+const uuid = require('uuid');
 
 const express = require('express');
 const app = express();
