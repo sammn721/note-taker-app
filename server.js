@@ -44,10 +44,4 @@ app.post('/api/notes', function (req, res)  {
     
     //return new note
     //asign id with uniqid
-})
- 
-app.listen(3000)
-
-app.listen(PORT, () => {
-    console.log(`App listening on PORT ${PORT}`);
 });
